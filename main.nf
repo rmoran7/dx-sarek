@@ -714,9 +714,24 @@ bedIntervals = bedIntervals
 
 bedIntervals = bedIntervals.dump(tag:'bedintervals')
 
+/*
 if (params.no_intervals && step != 'annotate') {
     file("${params.outdir}/no_intervals.bed").text = "no_intervals\n"
     bedIntervals = Channel.from(file("${params.outdir}/no_intervals.bed"))
+}
+*/
+process no_intervals{
+    output:
+        file 'no_intervals.bed' into bedIntervalsProcess
+    when: params.no_intervals && step != 'annotate'
+    script:
+        """
+        touch no_intervals.bed
+        echo 'no_intervals' > no_intervals.bed
+        """
+}
+if (params.no_intervals && step != 'annotate') {
+    bedIntervals = bedIntervalsProcess
 }
 
 (intBaseRecalibrator, intApplyBQSR, intHaplotypeCaller, intFreebayesSingle, intMpileup, bedIntervalsSingle, bedIntervalsPair) = bedIntervals.into(7)
