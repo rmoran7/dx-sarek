@@ -2524,7 +2524,7 @@ process PileupSummariesForMutect2 {
     when: 'mutect2' in tools
 
     script:
-    intervalsOptions = params.no_intervals ? "" : "-L ${intervalBed}"
+    intervalsOptions = params.no_intervals ? "-V ${germlineResource}" : "-L ${intervalBed}"
     """
     ls
     echo ${intervalsOptions}
