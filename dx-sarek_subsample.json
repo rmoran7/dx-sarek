@@ -1,0 +1,5 @@
+{
+	"pipeline_url": "https://github.com/GHAStVHenry/dx-sarek.git -r dnanexus",
+	"args": "--sampleID HCC1187_subsample --input dx://sarek2:/input/subsample/sample_manifest_dx_subsample.tsv --tools Mutect2,HaplotypeCaller --genomes_base dx://sarek2:/input/ref_genome_base/GRCh38 --igenomes_ignore --no_intervals --outDir dx://sarek2:/output/subsample -profile dnanexus,docker -with-trace false -with-report false -with-timeline false -with-dag false",
+	"license": "$NXF_XPACK_LICENSE"
+}
